@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.example.ronswansquoter.utilites.NetworkUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -43,9 +46,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            mInitalQuote.setText(s);
-            super.onPostExecute(s);
+        protected void onPostExecute(String quote) {
+            quote = quote.replaceAll("\\[","").replaceAll("\\]","");
+            mInitalQuote.setText(quote);
+            super.onPostExecute(quote);
         }
     }
 }
