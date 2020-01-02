@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.ronswansquoter.utilites.NetworkUtils;
@@ -24,9 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mInitalQuote = (TextView)findViewById(R.id.inital_quote);
+        newQuote(mInitalQuote);
+
+
+    }
+
+    public void newQuote(View view){
         new QuoteRequest().execute();
-
-
     }
 
     public class QuoteRequest extends AsyncTask<URL, Void, String> {

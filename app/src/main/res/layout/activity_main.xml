@@ -2,24 +2,31 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/swanson"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/swanson" />
 
     <TextView
         android:id="@+id/inital_quote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Place Holder Text"
         android:layout_margin="10dp"
-        android:textSize="20sp"/>
+        android:text="Place Holder Text"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gees Another"
+        android:layout_gravity="center"
+        android:onClick="newQuote"/>
 
 
 </LinearLayout>
