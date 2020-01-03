@@ -9,6 +9,7 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -126,7 +127,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if(id == R.id.quote_reset){
             tempArray = new ArrayList<>();
             mAdapter.setmQuoteArray(null);
-
+        }
+        if(id == R.id.quote_settings){
+            Intent settingsActivity = new Intent(this, SettingsActivity.class);
+            startActivity(settingsActivity);
         }
         return super.onOptionsItemSelected(item);
     }
