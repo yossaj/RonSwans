@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     public void newQuote(View view){
         getSupportLoaderManager().getLoader(LOADER_ID).forceLoad();
-
-
-
     }
 
 
@@ -111,5 +111,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(@NonNull Loader<String[]> loader) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menuitems,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.quote_reset){
+            tempArray = new ArrayList<>();
+            mAdapter.setmQuoteArray(null);
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
