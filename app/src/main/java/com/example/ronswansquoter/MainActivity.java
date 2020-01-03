@@ -1,6 +1,11 @@
 package com.example.ronswansquoter;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,11 +25,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String[]> {
 
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
     private ArrayList<String> tempArray;
+    private static final int LOADER_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,39 +42,74 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new Adapter();
         mRecyclerView.setAdapter(mAdapter);
         tempArray = new ArrayList<>();
-
-
+        LoaderManager.LoaderCallbacks<String[]> callback = MainActivity.this;
+        Bundle bundleForLoader = null;
+        getSupportLoaderManager().initLoader(LOADER_ID, bundleForLoader, callback);
     }
 
     public void newQuote(View view){
-        new QuoteRequest().execute();
+        getSupportLoaderManager().getLoader(LOADER_ID).forceLoad();
+
+
+
     }
 
-    public class QuoteRequest extends AsyncTask<URL, Void, String[]> {
 
-        @Override
-        protected String[] doInBackground(URL... urls) {
-            String tempQuote = null;
+    @Override
+    public Loader<String[]> onCreateLoader(int id, Bundle args) {
 
-            try {
-                tempQuote = NetworkUtils.getResponseFromHttpUrl();
-                tempArray.add(0, tempQuote);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+
+        return  new AsyncTaskLoader<String[]>(this) {
+
+            String[] mQuoteData = null;
+
+            @Override
+            protected void onStartLoading() {
+                if(mQuoteData!= null){
+                    deliverResult(mQuoteData);
+                }else {
+                    forceLoad();
+                }
+
             }
 
-            String[] stringArrayQuotes = new String[tempArray.size()];
-            for(int i = 0; i < tempArray.size(); i++){
-                stringArrayQuotes[i] = tempArray.get(i);
+            @Override
+            public String[] loadInBackground() {
+                String tempQuote = null;
+
+                try {
+                    tempQuote = NetworkUtils.getResponseFromHttpUrl();
+                    tempArray.add(0, tempQuote);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String[] stringArrayQuotes = new String[tempArray.size()];
+                for(int i = 0; i < tempArray.size(); i++){
+                    stringArrayQuotes[i] = tempArray.get(i);
+                }
+                return stringArrayQuotes;
             }
 
-            return stringArrayQuotes;
+            @Override
+            public void deliverResult( String[] data) {
+                mQuoteData = data;
+                super.deliverResult(data);
+            }
+        };
+
+
         }
 
-        @Override
-        protected void onPostExecute(String[] quotes) {
-            mAdapter.setmQuoteArray(quotes);
-            super.onPostExecute(quotes);
-        }
+    @Override
+    public void onLoadFinished(@NonNull Loader<String[]> loader, String[] data) {
+        mAdapter.setmQuoteArray(data);
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<String[]> loader) {
+
     }
 }
