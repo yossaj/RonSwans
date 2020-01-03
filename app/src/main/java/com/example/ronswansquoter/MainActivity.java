@@ -22,23 +22,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mInitalQuote;
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
     private ArrayList<String> tempArray;
-    private String quote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview_quoter);
-        mInitalQuote = (TextView)findViewById(R.id.error_message_display);
-        newQuote(mInitalQuote);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
-
         mAdapter = new Adapter();
         mRecyclerView.setAdapter(mAdapter);
         tempArray = new ArrayList<>();
@@ -52,27 +46,20 @@ public class MainActivity extends AppCompatActivity {
 
     public class QuoteRequest extends AsyncTask<URL, Void, String[]> {
 
-
-
         @Override
         protected String[] doInBackground(URL... urls) {
             String tempQuote = null;
 
             try {
-                /* network response returns a string rather than a json object - this needs to be turned into a String[] in order for recycleView to accept it*/
                 tempQuote = NetworkUtils.getResponseFromHttpUrl();
-                tempArray.add(tempQuote);
+                tempArray.add(0, tempQuote);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-
-
             String[] stringArrayQuotes = new String[tempArray.size()];
-
             for(int i = 0; i < tempArray.size(); i++){
-                /*tempQuote = tempQuote.replaceAll("\\[","").replaceAll("\\]","");*/
-                stringArrayQuotes[i] = tempQuote;
+                stringArrayQuotes[i] = tempArray.get(i);
             }
 
             return stringArrayQuotes;

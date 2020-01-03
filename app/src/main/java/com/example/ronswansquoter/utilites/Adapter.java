@@ -22,7 +22,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     public class AdapterViewHolder extends RecyclerView.ViewHolder{
 
         public final TextView mQuoteHolderTextView;
-
         public AdapterViewHolder(View itemView) {
             super(itemView);
             mQuoteHolderTextView = (TextView) itemView.findViewById(R.id.quote_items);

@@ -12,6 +12,13 @@
         android:adjustViewBounds="true"
         android:src="@drawable/swanson2" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pearl Of Wisdom"
+        android:onClick="newQuote"/>
+
+
 
 
         <androidx.recyclerview.widget.RecyclerView
