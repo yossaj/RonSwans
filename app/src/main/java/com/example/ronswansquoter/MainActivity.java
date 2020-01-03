@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,12 +30,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String[]> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String[]>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
     private ArrayList<String> tempArray;
     private static final int LOADER_ID = 0;
+    private static boolean pref_update = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,5 +135,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             startActivity(settingsActivity);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        pref_update = true;
+
     }
 }
