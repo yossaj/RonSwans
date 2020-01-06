@@ -159,11 +159,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         pref_update = true;
-        if(key.equals(getString(R.string.show_large_text))){
-            mAdapter.getTextPrefs(true);
-        }else{
-            mAdapter.getTextPrefs(false);
+        if(key.equals(getString(R.string.show_large_text))) {
+            mAdapter.getTextPrefs(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.pref_large_text_default)));
         }
-
     }
 }
