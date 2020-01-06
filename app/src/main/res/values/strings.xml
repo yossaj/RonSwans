@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RonSwansQuoter</string>
+
+    <string name="show_large_text">show_large_text</string>
 </resources>

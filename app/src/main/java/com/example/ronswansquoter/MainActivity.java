@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         LoaderManager.LoaderCallbacks<String[]> callback = MainActivity.this;
         Bundle bundleForLoader = null;
         getSupportLoaderManager().initLoader(LOADER_ID, bundleForLoader, callback);
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
     }
 
     public void newQuote(View view){
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public String[] loadInBackground() {
                 String tempQuote = null;
 
+
                 try {
                     tempQuote = NetworkUtils.getResponseFromHttpUrl();
                     tempArray.add(0, tempQuote);
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull Loader<String[]> loader, String[] data) {
+
         mAdapter.setmQuoteArray(data);
 
     }
@@ -114,6 +118,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(@NonNull Loader<String[]> loader) {
 
+    }
+
+    @Override
+    protected void onStart() {
+        if(pref_update == true){
+            getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+            pref_update = false;
+        }
+        super.onStart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
     }
 
     @Override
@@ -138,8 +157,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         pref_update = true;
+        if(key.equals(getString(R.string.show_large_text))){
+            mAdapter.getTextPrefs(true);
+        }else{
+            mAdapter.getTextPrefs(false);
+        }
 
     }
 }

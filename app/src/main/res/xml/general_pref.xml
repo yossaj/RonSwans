@@ -17,6 +17,10 @@
         android:key="color_theme"/>
 
     <CheckBoxPreference
+        android:defaultValue="@bool/pref_large_text_default"
+        android:key="@string/show_large_text"
+        android:summaryOff="Hidden"
+        android:summaryOn="Shown"
         android:title="Large Font"/>
 
 
