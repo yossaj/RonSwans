@@ -10,7 +10,6 @@
        android:entryValues="@array/pref_swanson_emotions_values"
        android:key="swan_emote"/>
 
-
     <ListPreference
         android:title="Color Theme"
         android:entries="@array/pref_color_themes"

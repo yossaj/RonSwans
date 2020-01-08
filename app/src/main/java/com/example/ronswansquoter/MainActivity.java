@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,16 +38,19 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String[]>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private RecyclerView mRecyclerView;
+    private ImageView mRonsFace;
     private Adapter mAdapter;
     private ArrayList<String> tempArray;
     private static final int LOADER_ID = 0;
     private static boolean pref_update = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview_quoter);
+        mRonsFace = (ImageView)findViewById(R.id.ronsface);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new Adapter();
@@ -79,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 }else {
                     forceLoad();
                 }
-
             }
 
             @Override
@@ -167,8 +170,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }else if(key.equals("color_theme")){
             String color = sharedPreferences.getString(key, getResources().getString(R.string.brown_hex));
             mAdapter.getColorPrefs(color);
-
-
+        }else if(key.equals("swan_emote")){
+            String title = sharedPreferences.getString(key,getResources().getResourceName(R.drawable.swanson1) );
+            int resID = getResources().getIdentifier(title,
+                    "drawable", getPackageName());
+            mRonsFace.setImageResource(resID);
         }
     }
+
+
 }
