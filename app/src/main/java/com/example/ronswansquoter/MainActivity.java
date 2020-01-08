@@ -3,6 +3,7 @@ package com.example.ronswansquoter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
@@ -12,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             tempArray = new ArrayList<>();
             mAdapter.setmQuoteArray(null);
         }
-        if(id == R.id.quote_settings){
+        else if(id == R.id.quote_settings){
             Intent settingsActivity = new Intent(this, SettingsActivity.class);
             startActivity(settingsActivity);
         }
@@ -161,6 +164,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         pref_update = true;
         if(key.equals(getString(R.string.show_large_text))) {
             mAdapter.getTextPrefs(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.pref_large_text_default)));
+        }else if(key.equals("color_theme")){
+            String color = sharedPreferences.getString(key, getResources().getString(R.string.brown_hex));
+            mAdapter.getColorPrefs(color);
+
+
         }
     }
 }

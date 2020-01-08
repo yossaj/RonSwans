@@ -2,4 +2,14 @@
     <string name="app_name">RonSwansQuoter</string>
 
     <string name="show_large_text">show_large_text</string>
+
+    <string name="brown">Brown</string>
+    <string name="pine">Pine</string>
+    <string name="mahogany">Mahogany</string>
+
+
+    <string name="brown_hex">#4F3824</string>
+    <string name="pine_hex">#CD853F</string>
+    <string name="mahogany_hex">#CD853F</string>
+
 </resources>

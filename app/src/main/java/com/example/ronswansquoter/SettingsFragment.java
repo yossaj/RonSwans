@@ -29,10 +29,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         String stringValue = value.toString();
         String key = preference.getKey();
 
-        ListPreference listPreference = (ListPreference)preference;
-        int prefIndex = listPreference.findIndexOfValue(stringValue);
+
         if(preference instanceof ListPreference){
-            preference.setSummary(listPreference.getEntries()[prefIndex]);
+            ListPreference listPreference = (ListPreference)preference;
+            int prefIndex = listPreference.findIndexOfValue(stringValue);
+            if (prefIndex >= 0) {
+                preference.setSummary(listPreference.getEntries()[prefIndex]);
+            }
         }else{
             preference.setSummary(stringValue);
         }

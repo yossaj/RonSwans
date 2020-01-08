@@ -20,6 +20,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     private String[] mQuoteArray;
     private boolean largeText = false;
+    private String color = "white";
     public Adapter(){
 
     }
@@ -55,9 +56,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         String quoteOfTheMoment = mQuoteArray[position];
         quoteOfTheMoment = quoteOfTheMoment.replaceAll("\\[","").replaceAll("\\]","");
         holder.mQuoteHolderTextView.setText(quoteOfTheMoment);
+        holder.mQuoteHolderTextView.setBackgroundColor(Color.parseColor(color));
         holder.mQuoteHolderTextView.setTextSize(22);
         if(largeText){
-            holder.mQuoteHolderTextView.setTextSize(44);
+            holder.mQuoteHolderTextView.setTextSize(34);
         }
     }
 
@@ -74,6 +76,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     public void getTextPrefs(boolean largeTextOnOff){
         largeText = largeTextOnOff;
+    }
+
+    public void getColorPrefs(String prefColor){
+        color = prefColor;
     }
 
 

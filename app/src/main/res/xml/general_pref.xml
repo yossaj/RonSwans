@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
    <ListPreference
        android:title="Swanson Emotion"
        android:entries="@array/pref_swanson_emotions"
-       android:entryValues="@array/pref_swanson_emotions"
+       android:entryValues="@array/pref_swanson_emotions_values"
        android:key="swan_emote"/>
 
 
     <ListPreference
         android:title="Color Theme"
         android:entries="@array/pref_color_themes"
-        android:entryValues="@array/pref_color_themes"
+        android:entryValues="@array/pref_color_themes_values"
         android:key="color_theme"/>
 
     <CheckBoxPreference
         android:defaultValue="@bool/pref_large_text_default"
         android:key="@string/show_large_text"
-        android:summaryOff="Hidden"
-        android:summaryOn="Shown"
+        android:summaryOff="Smaller Text"
+        android:summaryOn="Larger Text"
         android:title="Large Font"/>
 
 

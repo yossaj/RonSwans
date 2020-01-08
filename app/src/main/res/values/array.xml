@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pref_color_themes">
+    <array name="pref_color_themes">
+        <item>Pine</item>
+        <item>Mahogany</item>
         <item>Brown</item>
-        <item>Brown</item>
-        <item>Brown</item>
-    </string-array>
+    </array>
+
+    <array name="pref_color_themes_values">
+        <item>@string/brown_hex</item>
+        <item>@string/mahogany_hex</item>
+        <item>@string/pine_hex</item>
+    </array>
 
 
-    <string-array name="pref_swanson_emotions">
+    <array name="pref_swanson_emotions">
         <item>Angry</item>
         <item>Manly</item>
         <item>Gleeful</item>
-    </string-array>
+    </array>
+
+    <array name="pref_swanson_emotions_values">
+        <item>angry</item>
+        <item>manly</item>
+        <item>gleeful</item>
+    </array>
 
 
 </resources>
