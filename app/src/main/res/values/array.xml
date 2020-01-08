@@ -7,9 +7,9 @@
     </array>
 
     <array name="pref_color_themes_values">
-        <item>@string/brown_hex</item>
-        <item>@string/mahogany_hex</item>
         <item>@string/pine_hex</item>
+        <item>@string/mahogany_hex</item>
+        <item>@string/brown_hex</item>
     </array>
 
 
