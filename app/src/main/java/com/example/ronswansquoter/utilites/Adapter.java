@@ -21,6 +21,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     private String[] mQuoteArray;
     private boolean largeText = false;
     private String color = "white";
+    private boolean lightText = false;
     public Adapter(){
 
     }
@@ -61,6 +62,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         if(largeText){
             holder.mQuoteHolderTextView.setTextSize(34);
         }
+        if(lightText){
+            holder.mQuoteHolderTextView.setTextColor(Color.parseColor("#FFF8ED"));
+        }
     }
 
     @Override
@@ -72,6 +76,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     public void setmQuoteArray(String[] quoteArray) {
         mQuoteArray = quoteArray;
         notifyDataSetChanged();
+        if(color != "white"){
+            lightText = true;
+        }
     }
 
     public void getTextPrefs(boolean largeTextOnOff){

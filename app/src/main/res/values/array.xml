@@ -14,9 +14,9 @@
 
 
     <array name="pref_swanson_emotions">
+        <item>Mischievous</item>
         <item>Angry</item>
-        <item>Manly</item>
-        <item>Gleeful</item>
+        <item>Pained</item>
     </array>
 
     <array name="pref_swanson_emotions_values">

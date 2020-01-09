@@ -6,6 +6,7 @@
 
    <ListPreference
        android:title="Swanson Emotion"
+       android:defaultValue="Angry"
        android:entries="@array/pref_swanson_emotions"
        android:entryValues="@array/pref_swanson_emotions_values"
        android:key="swan_emote"/>

@@ -5,7 +5,7 @@ android:layout_height="wrap_content"
 android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/quote_items"
         android:padding="20dp"
@@ -15,9 +15,9 @@ android:orientation="vertical">
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#84B59F"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        android:background="#3C1518"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp" />
 
 
 </LinearLayout>
