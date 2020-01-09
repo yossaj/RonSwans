@@ -29,7 +29,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         String stringValue = value.toString();
         String key = preference.getKey();
 
-
+//       TODO (1) Preferences summary do not always load on start
         if(preference instanceof ListPreference){
             ListPreference listPreference = (ListPreference)preference;
             int prefIndex = listPreference.findIndexOfValue(stringValue);

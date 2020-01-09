@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int LOADER_ID = 0;
     private static boolean pref_update = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         tempArray = new ArrayList<>();
         LoaderManager.LoaderCallbacks<String[]> callback = MainActivity.this;
         Bundle bundleForLoader = null;
+
         getSupportLoaderManager().initLoader(LOADER_ID, bundleForLoader, callback);
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
     }
