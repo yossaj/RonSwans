@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#69140E</color>
-    <color name="colorPrimaryDark">#3C1518</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#310A07</color>
+    <color name="colorPrimaryDark">#0C0303</color>
+    <color name="colorAccent">#D81B1B</color>
     <color name="brown">#4F3824</color>
-    <color name="pine">#CD853F</color>
-    <color name="mahgony">#8B4513</color>
+    <color name="pine">#AD6B29</color>
+    <color name="mahgony">#833A06</color>
 </resources>

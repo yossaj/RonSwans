@@ -57,6 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         String quoteOfTheMoment = mQuoteArray[position];
         quoteOfTheMoment = quoteOfTheMoment.replaceAll("\\[","").replaceAll("\\]","");
         holder.mQuoteHolderTextView.setText(quoteOfTheMoment);
+        holder.mQuoteHolderTextView.setAlpha(0.9f);
         holder.mQuoteHolderTextView.setBackgroundColor(Color.parseColor(color));
         holder.mQuoteHolderTextView.setTextSize(22);
         if(largeText){
